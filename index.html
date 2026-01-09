@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wellness Check 2.0</title>
+    <title>Wellness Check 2.1</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -26,18 +26,13 @@
 
         .bg-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d8b4a6' fill-opacity='0.15'/%3E%3C/svg%3E");
             background-size: cover; background-position: center; background-attachment: fixed;
-            transition: all 0.5s ease;
+            transition: opacity 0.8s ease-in-out;
+            filter: blur(2.5px) brightness(0.85);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d8b4a6' fill-opacity='0.15'/%3E%3C/svg%3E");
         }
 
-        .bg-overlay.has-photo { filter: blur(2.5px) brightness(0.85); }
-
-        header {
-            text-align: center; margin-bottom: 40px; width: 100%; max-width: 320px;
-            border-bottom: 3.5px double var(--border-burgundy); padding-bottom: 20px;
-        }
-
+        header { text-align: center; margin-bottom: 40px; width: 100%; max-width: 320px; border-bottom: 3.5px double var(--border-burgundy); padding-bottom: 20px; }
         h1 { font-family: 'Cinzel Decorative', cursive; font-size: 26px; color: var(--royal-red); margin: 0; letter-spacing: 2px; }
         .subtitle { font-size: 13px; color: var(--text-brown); margin-top: 10px; font-style: italic; }
 
@@ -69,8 +64,8 @@
         .f-yellow { color: var(--flower-yellow); }
         .f-blue { color: var(--flower-blue); }
 
-        .bg-button { margin-top: 30px; padding: 8px 15px; font-size: 10px; background: rgba(255,255,255,0.4); border: 1px solid var(--border-burgundy); color: var(--border-burgundy); border-radius: 4px; cursor: pointer; font-family: 'Cinzel Decorative', cursive; }
-        #file-input { display: none; }
+        .refresh-button { margin-top: 30px; padding: 10px 20px; font-size: 12px; background: rgba(255,255,255,0.6); border: 1.5px solid var(--border-burgundy); color: var(--border-burgundy); border-radius: 20px; cursor: pointer; font-family: 'Cinzel Decorative', cursive; font-weight: bold; transition: all 0.3s; }
+        .refresh-button:active { transform: scale(0.95); background: var(--rose-gold); }
     </style>
 </head>
 <body>
@@ -79,12 +74,14 @@
         <h1>Wellness Check</h1>
         <div class="subtitle">May your day shine as bright as a diamond</div>
     </header>
+    
     <div class="time-section">
         <div class="time-title">Dawn Breeze</div>
         <div class="card">
             <div class="vitamin-item"><div class="item-content"><input type="checkbox" id="v-1" class="check-dawn"><span class="vitamin-name">유산균</span></div></div>
         </div>
     </div>
+
     <div class="time-section">
         <div class="time-title">Golden Afternoon</div>
         <div class="card">
@@ -95,53 +92,31 @@
             <div class="vitamin-item"><div class="item-content"><input type="checkbox" id="v-6" class="check-afternoon"><span class="vitamin-name">오메가3</span></div></div>
         </div>
     </div>
+
     <div class="time-section">
         <div class="time-title">Moonlight Rest</div>
         <div class="card">
             <div class="vitamin-item"><div class="item-content"><input type="checkbox" id="v-7" class="check-moonlight"><span class="vitamin-name">칼슘마그네슘</span></div></div>
         </div>
     </div>
+
     <div class="calendar-section">
         <div class="calendar-title" id="month-name">Month Year</div>
         <div class="calendar-grid" id="calendar-body"></div>
     </div>
-    <label for="file-input" class="bg-button">Change Background</label>
-    <input type="file" id="file-input" accept="image/*">
+
+    <button class="refresh-button" onclick="location.reload()">Change Mood ❀</button>
+
     <audio id="ting-sound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
 
     <script>
+        // [배경 마법] 7장의 사진 중 하나를 무작위로 선택
+        const bgLayer = document.getElementById('bg-layer');
+        const randomNum = Math.floor(Math.random() * 7) + 1;
+        bgLayer.style.backgroundImage = `url("bg${randomNum}.jpg")`;
+
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const sound = document.getElementById('ting-sound');
-        const fileInput = document.getElementById('file-input');
-        const bgLayer = document.getElementById('bg-layer');
-
-        // [사진 보강] 저장된 배경 불러오기
-        try {
-            const savedBg = localStorage.getItem('user_bg');
-            if (savedBg) { 
-                bgLayer.style.backgroundImage = `url("${savedBg}")`; 
-                bgLayer.classList.add('has-photo'); 
-            }
-        } catch(e) {}
-
-        // [사진 보강] 배경 변경 로직
-        fileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const result = e.target.result;
-                    bgLayer.style.backgroundImage = `url("${result}")`;
-                    bgLayer.classList.add('has-photo');
-                    try {
-                        localStorage.setItem('user_bg', result);
-                    } catch(err) {
-                        alert("사진 용량이 너무 큽니다. 스크린샷으로 찍은 사진을 사용해 보세요!");
-                    }
-                }
-                reader.readAsDataURL(file);
-            }
-        });
 
         checkboxes.forEach(cb => {
             const saved = localStorage.getItem(cb.id);
