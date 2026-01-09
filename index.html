@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Wellness Check 1.2</title>
+    <title>Wellness Check 1.4</title>
     
     <link rel="apple-touch-icon" href="icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,27 +19,24 @@
             --text-brown: #3E2B26;
             --flower-yellow: #D4AF37; 
             --flower-blue: #0A1D37;
+            --light-grey: #E0DCD0; 
         }
 
-        /* [수정] 스크롤이 가능하도록 설정 */
-        html {
-            height: -webkit-fill-available;
-        }
+        html { height: -webkit-fill-available; }
 
         body {
             background-color: var(--bg-paper);
             margin: 0; 
-            padding: 40px 20px 80px 20px; /* 아래쪽에 버튼이 잘 보게 여백 80px 추가 */
+            padding: 40px 20px 80px 20px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; 
             position: relative;
             font-family: 'Noto Serif KR', serif;
             -webkit-tap-highlight-color: transparent;
-            overflow-y: auto; /* 세로 스크롤 허용 */
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
 
-        /* [수정] 배경 사진을 화면 뒤에 완전히 고정 */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -52,19 +49,24 @@
             pointer-events: none;
         }
 
-        /* --- 기존 디자인 유지 --- */
         header { text-align: center; margin-bottom: 40px; width: 100%; max-width: 320px; border-bottom: 3.5px double var(--border-burgundy); padding-bottom: 20px; }
         h1 { font-family: 'Cinzel Decorative', cursive; font-size: 26px; color: var(--royal-red); margin: 0; letter-spacing: 2px; }
-        .subtitle { font-size: 13px; color: var(--text-brown); margin-top: 10px; font-style: italic; }
+        
+        /* 문구 스타일 유지 */
+        .subtitle { font-size: 13px; color: var(--light-grey); margin-top: 10px; font-style: italic; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); min-height: 1.5em; }
+
         .time-section { width: 100%; max-width: 320px; margin-bottom: 30px; }
         .time-title { font-family: 'Cinzel Decorative', cursive; font-size: 19px; text-align: center; margin-bottom: 15px; color: var(--soft-burgundy); display: flex; align-items: center; justify-content: center; }
         .time-title::before, .time-title::after { content: '❖'; color: var(--border-burgundy); margin: 0 10px; font-size: 14px; }
+        
         .card { background: rgba(255, 255, 255, 0.45); border: 1px solid var(--border-burgundy); border-radius: 12px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; }
         .vitamin-item { display: flex; align-items: center; justify-content: center; padding: 8px 0; width: 100%; }
         .item-content { display: flex; align-items: center; justify-content: flex-start; min-width: 140px; }
+        
         input[type="checkbox"] { width: 24px; height: 24px; appearance: none; cursor: pointer; position: relative; background: rgba(255, 255, 255, 0.6); border-radius: 50%; border: 1px solid var(--border-burgundy); margin-right: 12px; }
         input[type="checkbox"]:checked { background: var(--royal-red); border-color: var(--royal-red); }
         input[type="checkbox"]:checked::after { content: '❀'; color: #FDFBF4; font-size: 14px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        
         .vitamin-name { font-size: 15px; font-weight: 600; color: var(--text-brown); }
         input[type="checkbox"]:checked + .vitamin-name { color: var(--soft-burgundy); text-decoration: line-through; opacity: 0.6; }
         
@@ -73,6 +75,7 @@
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
         .day-label { font-size: 10px; color: var(--soft-burgundy); font-weight: bold; padding-bottom: 5px; }
         .day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; font-size: 11px; background: rgba(255,255,255,0.4); border-radius: 4px; padding-top: 2px; }
+        
         .flower-container { display: flex; justify-content: center; gap: 2px; margin-top: 2px; }
         .f-dot { font-size: 9px; line-height: 1; display: none; }
         .f-dot.show { display: block; }
@@ -80,18 +83,11 @@
         .f-yellow { color: var(--flower-yellow); }
         .f-blue { color: var(--flower-blue); }
 
-        /* [수정] 버튼이 더 잘 보이도록 디자인 살짝 보강 */
         .refresh-button { 
-            margin-top: 40px; 
-            padding: 12px 25px; 
-            font-size: 13px; 
-            background: rgba(255,255,255,0.7); 
-            border: 1.5px solid var(--border-burgundy); 
-            color: var(--border-burgundy); 
-            border-radius: 25px; 
-            cursor: pointer; 
-            font-family: 'Cinzel Decorative', cursive; 
-            font-weight: bold;
+            margin-top: 40px; padding: 12px 25px; font-size: 13px; 
+            background: rgba(255,255,255,0.7); border: 1.5px solid var(--border-burgundy); 
+            color: var(--border-burgundy); border-radius: 25px; cursor: pointer; 
+            font-family: 'Cinzel Decorative', cursive; font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
     </style>
@@ -100,7 +96,7 @@
     <div id="bg-layer" class="bg-overlay"></div>
     <header>
         <h1>Wellness Check</h1>
-        <div class="subtitle">May your day shine as bright as a diamond</div>
+        <div class="subtitle" id="daily-quote">Loading inspiration...</div>
     </header>
     
     <div class="time-section">
@@ -109,6 +105,7 @@
             <div class="vitamin-item"><div class="item-content"><input type="checkbox" id="v-1" class="check-dawn"><span class="vitamin-name">유산균</span></div></div>
         </div>
     </div>
+
     <div class="time-section">
         <div class="time-title">Golden Afternoon</div>
         <div class="card">
@@ -119,6 +116,7 @@
             <div class="vitamin-item"><div class="item-content"><input type="checkbox" id="v-6" class="check-afternoon"><span class="vitamin-name">오메가3</span></div></div>
         </div>
     </div>
+
     <div class="time-section">
         <div class="time-title">Moonlight Rest</div>
         <div class="card">
@@ -136,9 +134,24 @@
     <audio id="ting-sound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
 
     <script>
+        const quotes = [
+            "Your elegance outshines the brightest diamonds.",
+            "A noble heart creates a noble day.",
+            "Embrace your power with grace and confidence.",
+            "Today's success is your greatest masterpiece.",
+            "Radiate brilliance in every step you take.",
+            "Command your day with a smile of victory.",
+            "Born to be royal, destined to be great."
+        ];
+
+        // 1. 배경 및 문구 설정
         const bgLayer = document.getElementById('bg-layer');
-        const randomNum = Math.floor(Math.random() * 7) + 1;
-        bgLayer.style.backgroundImage = `url("bg${randomNum}.jpg")`;
+        const quoteElement = document.getElementById('daily-quote');
+        
+        // 날짜 기반으로 인덱스 생성 (매일 고정되되, 새로고침하면 바뀜)
+        const randomNum = Math.floor(Math.random() * 7); 
+        bgLayer.style.backgroundImage = `url("bg${randomNum + 1}.jpg")`;
+        quoteElement.innerText = quotes[randomNum];
 
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const sound = document.getElementById('ting-sound');
@@ -192,10 +205,19 @@
         }
 
         function checkReset() {
-            const now = new Date(); const last = localStorage.getItem('last_reset'); const resetTime = new Date(); resetTime.setHours(6, 0, 0, 0);
+            const now = new Date(); 
+            const last = localStorage.getItem('last_reset'); 
+            const resetTime = new Date(); 
+            resetTime.setHours(6, 0, 0, 0);
+
             if (now >= resetTime && (!last || new Date(parseInt(last)) < resetTime)) {
-                checkboxes.forEach(cb => { cb.checked = false; localStorage.setItem(cb.id, false); });
+                checkboxes.forEach(cb => { 
+                    cb.checked = false; 
+                    localStorage.setItem(cb.id, false); 
+                });
                 localStorage.setItem('last_reset', now.getTime());
+                // 리셋 시 문구도 새로고침 효과
+                location.reload(); 
             }
         }
         checkReset(); renderCalendar();
