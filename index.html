@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Wellness Check 1.1</title>
+    <title>Wellness Check 1.2</title>
     
     <link rel="apple-touch-icon" href="icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,37 +21,38 @@
             --flower-blue: #0A1D37;
         }
 
-        /* [수정] 화면 전체가 흔들리지 않도록 고정 */
-        html, body {
-            overflow-x: hidden;
-            overscroll-behavior-y: none; /* 아이폰 바운스 방지 */
-            height: 100%;
+        /* [수정] 스크롤이 가능하도록 설정 */
+        html {
+            height: -webkit-fill-available;
         }
 
         body {
             background-color: var(--bg-paper);
-            margin: 0; padding: 40px 20px;
+            margin: 0; 
+            padding: 40px 20px 80px 20px; /* 아래쪽에 버튼이 잘 보게 여백 80px 추가 */
             display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; position: relative;
+            min-height: 100vh; 
+            position: relative;
             font-family: 'Noto Serif KR', serif;
             -webkit-tap-highlight-color: transparent;
+            overflow-y: auto; /* 세로 스크롤 허용 */
+            -webkit-overflow-scrolling: touch;
         }
 
-        /* [수정] 배경 사진이 잘리지 않고 흔들리지 않게 고정 */
+        /* [수정] 배경 사진을 화면 뒤에 완전히 고정 */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            width: 100%; height: 100%;
             z-index: -1;
-            background-size: cover; /* 꽉 채우되 잘림을 최소화 */
-            background-position: center center; /* 정중앙 기준 */
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             filter: blur(2px) brightness(0.85);
-            transition: opacity 0.5s ease;
-            pointer-events: none; /* 배경이 터치를 방해하지 않도록 */
+            pointer-events: none;
         }
 
-        /* 나머지 디자인 코드는 영애님의 정원 그대로 유지됩니다... */
+        /* --- 기존 디자인 유지 --- */
         header { text-align: center; margin-bottom: 40px; width: 100%; max-width: 320px; border-bottom: 3.5px double var(--border-burgundy); padding-bottom: 20px; }
         h1 { font-family: 'Cinzel Decorative', cursive; font-size: 26px; color: var(--royal-red); margin: 0; letter-spacing: 2px; }
         .subtitle { font-size: 13px; color: var(--text-brown); margin-top: 10px; font-style: italic; }
@@ -66,6 +67,7 @@
         input[type="checkbox"]:checked::after { content: '❀'; color: #FDFBF4; font-size: 14px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
         .vitamin-name { font-size: 15px; font-weight: 600; color: var(--text-brown); }
         input[type="checkbox"]:checked + .vitamin-name { color: var(--soft-burgundy); text-decoration: line-through; opacity: 0.6; }
+        
         .calendar-section { width: 100%; max-width: 320px; margin-top: 40px; text-align: center; background: rgba(255, 255, 255, 0.3); border: 1.5px solid var(--border-burgundy); border-radius: 12px; padding: 15px; }
         .calendar-title { font-family: 'Cinzel Decorative', cursive; color: var(--royal-red); margin-bottom: 10px; font-size: 16px; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
@@ -77,7 +79,21 @@
         .f-burgundy { color: var(--royal-red); }
         .f-yellow { color: var(--flower-yellow); }
         .f-blue { color: var(--flower-blue); }
-        .refresh-button { margin-top: 30px; padding: 10px 20px; font-size: 12px; background: rgba(255,255,255,0.6); border: 1.5px solid var(--border-burgundy); color: var(--border-burgundy); border-radius: 20px; cursor: pointer; font-family: 'Cinzel Decorative', cursive; font-weight: bold; }
+
+        /* [수정] 버튼이 더 잘 보이도록 디자인 살짝 보강 */
+        .refresh-button { 
+            margin-top: 40px; 
+            padding: 12px 25px; 
+            font-size: 13px; 
+            background: rgba(255,255,255,0.7); 
+            border: 1.5px solid var(--border-burgundy); 
+            color: var(--border-burgundy); 
+            border-radius: 25px; 
+            cursor: pointer; 
+            font-family: 'Cinzel Decorative', cursive; 
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
