@@ -2,19 +2,17 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wellness Check 1.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Wellness Check 1.1</title>
     
     <link rel="apple-touch-icon" href="icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="theme-color" content="#F2EADA">
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-paper: #F2EADA; 
-            --rose-gold: #D8B4A6;
             --royal-red: #8B1520; 
             --soft-burgundy: #A64452; 
             --border-burgundy: #630F17; 
@@ -23,57 +21,63 @@
             --flower-blue: #0A1D37;
         }
 
+        /* [수정] 화면 전체가 흔들리지 않도록 고정 */
+        html, body {
+            overflow-x: hidden;
+            overscroll-behavior-y: none; /* 아이폰 바운스 방지 */
+            height: 100%;
+        }
+
         body {
             background-color: var(--bg-paper);
             margin: 0; padding: 40px 20px;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; position: relative;
             font-family: 'Noto Serif KR', serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        /* [수정] 배경 사진이 잘리지 않고 흔들리지 않게 고정 */
         .bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-size: cover; background-position: center; background-attachment: fixed;
-            transition: opacity 0.8s ease-in-out;
-            filter: blur(2.5px) brightness(0.85);
-            /* 기본 문양 배경 (사진 로딩 전) */
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d8b4a6' fill-opacity='0.15'/%3E%3C/svg%3E");
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            background-size: cover; /* 꽉 채우되 잘림을 최소화 */
+            background-position: center center; /* 정중앙 기준 */
+            background-repeat: no-repeat;
+            filter: blur(2px) brightness(0.85);
+            transition: opacity 0.5s ease;
+            pointer-events: none; /* 배경이 터치를 방해하지 않도록 */
         }
 
+        /* 나머지 디자인 코드는 영애님의 정원 그대로 유지됩니다... */
         header { text-align: center; margin-bottom: 40px; width: 100%; max-width: 320px; border-bottom: 3.5px double var(--border-burgundy); padding-bottom: 20px; }
         h1 { font-family: 'Cinzel Decorative', cursive; font-size: 26px; color: var(--royal-red); margin: 0; letter-spacing: 2px; }
         .subtitle { font-size: 13px; color: var(--text-brown); margin-top: 10px; font-style: italic; }
-
         .time-section { width: 100%; max-width: 320px; margin-bottom: 30px; }
         .time-title { font-family: 'Cinzel Decorative', cursive; font-size: 19px; text-align: center; margin-bottom: 15px; color: var(--soft-burgundy); display: flex; align-items: center; justify-content: center; }
         .time-title::before, .time-title::after { content: '❖'; color: var(--border-burgundy); margin: 0 10px; font-size: 14px; }
-
         .card { background: rgba(255, 255, 255, 0.45); border: 1px solid var(--border-burgundy); border-radius: 12px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; }
         .vitamin-item { display: flex; align-items: center; justify-content: center; padding: 8px 0; width: 100%; }
         .item-content { display: flex; align-items: center; justify-content: flex-start; min-width: 140px; }
-
         input[type="checkbox"] { width: 24px; height: 24px; appearance: none; cursor: pointer; position: relative; background: rgba(255, 255, 255, 0.6); border-radius: 50%; border: 1px solid var(--border-burgundy); margin-right: 12px; }
         input[type="checkbox"]:checked { background: var(--royal-red); border-color: var(--royal-red); }
         input[type="checkbox"]:checked::after { content: '❀'; color: #FDFBF4; font-size: 14px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-
         .vitamin-name { font-size: 15px; font-weight: 600; color: var(--text-brown); }
         input[type="checkbox"]:checked + .vitamin-name { color: var(--soft-burgundy); text-decoration: line-through; opacity: 0.6; }
-
         .calendar-section { width: 100%; max-width: 320px; margin-top: 40px; text-align: center; background: rgba(255, 255, 255, 0.3); border: 1.5px solid var(--border-burgundy); border-radius: 12px; padding: 15px; }
         .calendar-title { font-family: 'Cinzel Decorative', cursive; color: var(--royal-red); margin-bottom: 10px; font-size: 16px; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
         .day-label { font-size: 10px; color: var(--soft-burgundy); font-weight: bold; padding-bottom: 5px; }
         .day-cell { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; font-size: 11px; background: rgba(255,255,255,0.4); border-radius: 4px; padding-top: 2px; }
-        
         .flower-container { display: flex; justify-content: center; gap: 2px; margin-top: 2px; }
         .f-dot { font-size: 9px; line-height: 1; display: none; }
         .f-dot.show { display: block; }
         .f-burgundy { color: var(--royal-red); }
         .f-yellow { color: var(--flower-yellow); }
         .f-blue { color: var(--flower-blue); }
-
-        .refresh-button { margin-top: 30px; padding: 10px 20px; font-size: 12px; background: rgba(255,255,255,0.6); border: 1.5px solid var(--border-burgundy); color: var(--border-burgundy); border-radius: 20px; cursor: pointer; font-family: 'Cinzel Decorative', cursive; font-weight: bold; transition: all 0.3s; }
-        .refresh-button:active { transform: scale(0.95); background: var(--rose-gold); }
+        .refresh-button { margin-top: 30px; padding: 10px 20px; font-size: 12px; background: rgba(255,255,255,0.6); border: 1.5px solid var(--border-burgundy); color: var(--border-burgundy); border-radius: 20px; cursor: pointer; font-family: 'Cinzel Decorative', cursive; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -89,7 +93,6 @@
             <div class="vitamin-item"><div class="item-content"><input type="checkbox" id="v-1" class="check-dawn"><span class="vitamin-name">유산균</span></div></div>
         </div>
     </div>
-
     <div class="time-section">
         <div class="time-title">Golden Afternoon</div>
         <div class="card">
@@ -100,7 +103,6 @@
             <div class="vitamin-item"><div class="item-content"><input type="checkbox" id="v-6" class="check-afternoon"><span class="vitamin-name">오메가3</span></div></div>
         </div>
     </div>
-
     <div class="time-section">
         <div class="time-title">Moonlight Rest</div>
         <div class="card">
@@ -118,7 +120,6 @@
     <audio id="ting-sound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
 
     <script>
-        // 1. 배경 설정 (bg1~bg7 랜덤)
         const bgLayer = document.getElementById('bg-layer');
         const randomNum = Math.floor(Math.random() * 7) + 1;
         bgLayer.style.backgroundImage = `url("bg${randomNum}.jpg")`;
@@ -126,7 +127,6 @@
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const sound = document.getElementById('ting-sound');
 
-        // 2. 체크박스 상태 로드 및 저장
         checkboxes.forEach(cb => {
             const saved = localStorage.getItem(cb.id);
             if (saved === 'true') cb.checked = true;
@@ -137,7 +137,6 @@
             });
         });
 
-        // 3. 달력 히스토리 업데이트
         function updateHistory() {
             const todayKey = new Date().toISOString().split('T')[0];
             let history = JSON.parse(localStorage.getItem('wellness_history_v3') || '{}');
@@ -149,7 +148,6 @@
             renderCalendar();
         }
 
-        // 4. 달력 렌더링
         function renderCalendar() {
             const calendarBody = document.getElementById('calendar-body');
             const monthName = document.getElementById('month-name');
@@ -177,7 +175,6 @@
             }
         }
 
-        // 5. 새벽 6시 리셋 로직
         function checkReset() {
             const now = new Date(); const last = localStorage.getItem('last_reset'); const resetTime = new Date(); resetTime.setHours(6, 0, 0, 0);
             if (now >= resetTime && (!last || new Date(parseInt(last)) < resetTime)) {
